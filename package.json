@@ -1,7 +1,7 @@
 {
-  "name": "react-date-range",
-  "version": "0.2.4",
-  "description": "A React component for choosing dates and date ranges.",
+  "name": "react-date-range-ch",
+  "version": "0.1.0",
+  "description": "修改react-date-range模块为中文",
   "main": "lib/index.js",
   "scripts": {
     "start-dev": "babel ./src --watch --out-dir ./lib & cd demo && npm install && npm run start-dev",

@@ -94,6 +94,21 @@ class Calendar extends Component {
     const year            = shownDate.year();
     const { styles }      = this;
     const { onlyClasses } = this.props;
+    // Ayou 2016.10.27
+    const  monthDict = {
+      'january':'一月',
+      'february':'二月',
+      'march':'三月',
+      'april':'四月',
+      'may':'五月',
+      'june':'六月',
+      'july':'七月',
+      'august':'八月',
+      'september':'九月',
+      'october':'十月',
+      'november':'十一月',
+      'december':'十二月'
+    }
 
     return (
       <div style={onlyClasses ? undefined : styles['MonthAndYear']} className={classes.monthAndYearWrapper}>
@@ -104,7 +119,7 @@ class Calendar extends Component {
           <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowPrev'] }}></i>
         </button>
         <span>
-          <span className={classes.month}>{month}</span>
+          <span className={classes.month}>{monthDict[month.toLowerCase()]}</span>
           <span className={classes.monthAndYearDivider}> - </span>
           <span className={classes.year}>{year}</span>
         </span>
@@ -126,9 +141,18 @@ class Calendar extends Component {
 
     for (let i = dow; i < 7 + dow; i++) {
       const day = moment.weekdaysMin(i);
-
+      // Ayou 2016.10.27
+      const dayDict={
+        'su':'日',
+        'mo':'一',
+        'tu':'二',
+        'we':'三',
+        'th':'四',
+        'fr':'五',
+        'sa':'六'
+      }
       weekdays.push(
-        <span style={onlyClasses ? undefined : styles['Weekday']} className={classes.weekDay} key={day}>{day}</span>
+        <span style={onlyClasses ? undefined : styles['Weekday']} className={classes.weekDay} key={day}>{dayDict[day.toLowerCase()]}</span>
       );
     }
 
