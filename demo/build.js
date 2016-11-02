@@ -68,8 +68,17 @@ if (NODE_ENV === 'production') {
 }
 
 const compiler = webpack(config);
+  console.log(NODE_ENV)
+if (NODE_ENV === 'production') {
 
-if (NODE_ENV === 'development') {
+    compiler.run(function (err, stats) {
+    if (err) throw err;
+    console.log(stats.toString({
+      colors : true,
+      chunks : false
+    }));
+  });
+} else  {
   const server = new WebpackDevServer(compiler, {
     contentBase : path.join(__dirname, 'dist'),
     noInfo: false,
@@ -85,14 +94,5 @@ if (NODE_ENV === 'development') {
 
   server.listen(3000, 'localhost', function(){
     console.log('Webpack Dev Server is listening on port 3000');
-  });
-} else if (NODE_ENV === 'production') {
-  compiler.run(function (err, stats) {
-    if (err) throw err;
-
-    console.log(stats.toString({
-      colors : true,
-      chunks : false
-    }));
   });
 }

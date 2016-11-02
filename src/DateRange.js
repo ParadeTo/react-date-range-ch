@@ -128,10 +128,11 @@ class DateRange extends Component {
         {()=>{
           const _calendars = [];
           for (var i = Number(calendars) - 1; i >= 0; i--) {
-            _calendars.push(
+            // ayou 2016.11.02
+            _calendars.unshift(
               <Calendar
                 key={i}
-                offset={ -i }
+                offset={ i }
                 link={ linkedCalendars && link }
                 linkCB={ this.handleLinkChange.bind(this) }
                 range={ range }
@@ -142,6 +143,7 @@ class DateRange extends Component {
                 maxDate={ maxDate }
 		onlyClasses={ onlyClasses }
                 classNames={ classes }
+                disableDaysBefore={this.props.disableDaysBefore} // ayou 2016.11.02
                 onChange={ this.handleSelect.bind(this) }  />
             );
           }

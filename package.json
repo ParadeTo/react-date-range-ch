@@ -16,14 +16,14 @@
     "datepicker",
     "rangepicker"
   ],
-  "author": "Burak Can <neoberg@gmail.com>",
+  "author": "Ayou <youxingzhi@qq.com>",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Adphorus/react-date-range"
+    "url": "http://github.com/ParadeTo/react-date-range-ch"
   },
   "bugs": {
-    "url": "http://github.com/Adphorus/react-date-range/issues"
+    "url": "http://github.com/ParadeTo/react-date-range-ch/issues"
   },
   "dependencies": {
     "classnames": "^2.2.1",

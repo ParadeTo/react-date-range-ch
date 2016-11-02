@@ -192,7 +192,13 @@ class Calendar extends Component {
     // Current month's days
     for (let i = 1; i <= dayCount; i++) {
       const dayMoment  = shownDate.clone().date(i);
-      days.push({ dayMoment });
+      // ayou 如果小于今天，显示为isPassive
+      var _today = moment()
+      if (Number(dayMoment.diff(_today,"days")) <= -1) {
+              days.push({ dayMoment ,isPassive:true});
+      } else {
+              days.push({ dayMoment });
+      }
     }
 
     // Next month's days
@@ -220,8 +226,8 @@ class Calendar extends Component {
           theme={ styles }
           isStartEdge = { isStartEdge }
           isEndEdge = { isEndEdge }
-          isSelected={ isSelected || isEdge }
-          isInRange={ isInRange }
+          isSelected = { isSelected || isEdge }
+          isInRange ={ isInRange }
           isToday={ isToday }
           key={ index }
           isPassive = { isPassive || isOutsideMinMax }
