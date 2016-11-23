@@ -49,6 +49,9 @@ export default class Main extends Component {
           </div>
 
           <DateRange
+            disableDaysBefore={true}
+            disableArrow={true}
+            calendars={4}
             onInit={ this.handleChange.bind(this, 'rangePicker') }
             onChange={ this.handleChange.bind(this, 'rangePicker') }
           />

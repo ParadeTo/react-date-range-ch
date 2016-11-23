@@ -112,23 +112,32 @@ class Calendar extends Component {
 
     return (
       <div style={onlyClasses ? undefined : styles['MonthAndYear']} className={classes.monthAndYearWrapper}>
-        <button
-          style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'left' }}
-          className={classes.prevButton}
-          onClick={this.changeMonth.bind(this, -1)}>
-          <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowPrev'] }}></i>
-        </button>
+          {
+            // ayou 2016.11.23 不显示箭头
+            !this.props.disableArrow ?
+            <button
+              style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'left' }}
+              className={classes.prevButton}
+              onClick={this.changeMonth.bind(this, -1)}>
+              <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowPrev'] }}></i>
+            </button>
+                    : null
+          }
         <span>
           <span className={classes.month}>{monthDict[month.toLowerCase()]}</span>
           <span className={classes.monthAndYearDivider}> - </span>
           <span className={classes.year}>{year}</span>
         </span>
-        <button
-          style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'right' }}
-          className={classes.nextButton}
-          onClick={this.changeMonth.bind(this, +1)}>
-          <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowNext'] }}></i>
-        </button>
+          {
+            // ayou 2016.11.23 不显示箭头
+            !this.props.disableArrow ?
+            <button
+              style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'right' }}
+              className={classes.nextButton}
+              onClick={this.changeMonth.bind(this, +1)}>
+              <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowNext'] }}></i>
+            </button>: null
+          }
       </div>
     )
   }
@@ -194,7 +203,7 @@ class Calendar extends Component {
       const dayMoment  = shownDate.clone().date(i);
       // ayou 如果小于今天，显示为isPassive
       var _today = moment()
-      if (Number(dayMoment.diff(_today,"days")) <= -1) {
+      if (this.props.disableDaysBefore && Number(dayMoment.diff(_today,"days")) <= -1) {
               days.push({ dayMoment ,isPassive:true});
       } else {
               days.push({ dayMoment });

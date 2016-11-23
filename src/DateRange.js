@@ -143,7 +143,8 @@ class DateRange extends Component {
                 maxDate={ maxDate }
 		onlyClasses={ onlyClasses }
                 classNames={ classes }
-                disableDaysBefore={this.props.disableDaysBefore} // ayou 2016.11.02
+                disableDaysBefore={this.props.disableDaysBefore} // ayou 2016.11.02 禁止选择今天之前的日期
+                disableArrow={this.props.disableArrow} // ayou 2016.11.23 不显示箭头
                 onChange={ this.handleSelect.bind(this) }  />
             );
           }
