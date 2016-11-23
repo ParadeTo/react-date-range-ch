@@ -19,11 +19,11 @@
   "author": "Ayou <youxingzhi@qq.com>",
   "license": "GPL-3.0",
   "repository": {
-    "type": "git",
-    "url": "http://github.com/ParadeTo/react-date-range-ch"
+    "type": "coding",
+    "url": "https://github.com/ParadeTo/react-date-range-ch.git"
   },
   "bugs": {
-    "url": "http://github.com/ParadeTo/react-date-range-ch/issues"
+    "url": "https://github.com/ParadeTo/react-date-range-ch.git"
   },
   "dependencies": {
     "classnames": "^2.2.1",

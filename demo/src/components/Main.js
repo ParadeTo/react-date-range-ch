@@ -207,7 +207,6 @@ export default class Main extends Component {
               value={ rangePicker['endDate'] && rangePicker['endDate'].format(format).toString() }
             />
           </div>
-
           <DateRange
             startDate={ moment().add(1,'month')}
             endDate={moment().add(1,'month').add(3,'days')}
