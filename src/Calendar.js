@@ -35,12 +35,12 @@ class Calendar extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const { format, range, theme, offset, firstDayOfWeek } = props;
+    const { format, range, theme, offset, firstDayOfWeek, shownDate } = props;
 
     const date = parseInput(props.date, format)
     const state = {
       date,
-      shownDate : (range && range['endDate'] || date).clone().add(offset, 'months'),
+      shownDate : (shownDate || range && range['endDate'] || date).clone().add(offset, 'months'), // ayou 2016.11.23人工指定shownDate
       firstDayOfWeek: (firstDayOfWeek || moment.localeData().firstDayOfWeek()),
     }
 

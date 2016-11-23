@@ -106,7 +106,7 @@ class DateRange extends Component {
   }
 
   render() {
-    const { ranges, format, linkedCalendars, style, calendars, firstDayOfWeek, minDate, maxDate, classNames, onlyClasses } = this.props;
+    const { shownDate, ranges, format, linkedCalendars, style, calendars, firstDayOfWeek, minDate, maxDate, classNames, onlyClasses } = this.props;
     const { range, link } = this.state;
     const { styles } = this;
 
@@ -136,12 +136,13 @@ class DateRange extends Component {
                 link={ linkedCalendars && link }
                 linkCB={ this.handleLinkChange.bind(this) }
                 range={ range }
+                shownDate={ shownDate }
                 format={ format }
                 firstDayOfWeek={ firstDayOfWeek }
                 theme={ styles }
                 minDate={ minDate }
                 maxDate={ maxDate }
-		onlyClasses={ onlyClasses }
+                onlyClasses={ onlyClasses }
                 classNames={ classes }
                 disableDaysBefore={this.props.disableDaysBefore} // ayou 2016.11.02 禁止选择今天之前的日期
                 disableArrow={this.props.disableArrow} // ayou 2016.11.23 不显示箭头

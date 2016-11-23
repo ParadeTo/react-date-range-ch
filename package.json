@@ -1,6 +1,6 @@
 {
   "name": "react-date-range-ch",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "修改react-date-range模块为中文",
   "main": "lib/index.js",
   "scripts": {
