@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 import parseInput from './utils/parseInput.js';
 import DayCell from './DayCell.js';
+import LangDic from './LangDic.js';
 import getTheme, { defaultClasses } from './styles.js';
 
 function checkRange(dayMoment, range) {
@@ -40,7 +41,7 @@ class Calendar extends Component {
     const date = parseInput(props.date, format)
     const state = {
       date,
-      shownDate : (shownDate || range && range['endDate'] || date).clone().add(offset, 'months'), // ayou 2016.11.23人工指定shownDate
+      shownDate : (shownDate || range && range['endDate'] || date).clone().add(offset, 'months'),
       firstDayOfWeek: (firstDayOfWeek || moment.localeData().firstDayOfWeek()),
     }
 
@@ -90,54 +91,38 @@ class Calendar extends Component {
 
   renderMonthAndYear(classes) {
     const shownDate       = this.getShownDate();
-    const month           = moment.months(shownDate.month());
+    let month           = moment.months(shownDate.month());
     const year            = shownDate.year();
     const { styles }      = this;
-    const { onlyClasses } = this.props;
-    // Ayou 2016.10.27
-    const  monthDict = {
-      'january':'一月',
-      'february':'二月',
-      'march':'三月',
-      'april':'四月',
-      'may':'五月',
-      'june':'六月',
-      'july':'七月',
-      'august':'八月',
-      'september':'九月',
-      'october':'十月',
-      'november':'十一月',
-      'december':'十二月'
-    }
+    const { onlyClasses, lang, showMonthArrow} = this.props;
+
+    month = lang ? LangDic[lang][month.toLowerCase()] : month;
 
     return (
       <div style={onlyClasses ? undefined : styles['MonthAndYear']} className={classes.monthAndYearWrapper}>
-          {
-            // ayou 2016.11.23 不显示箭头
-            !this.props.disableArrow ?
-            <button
-              style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'left' }}
-              className={classes.prevButton}
-              onClick={this.changeMonth.bind(this, -1)}>
-              <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowPrev'] }}></i>
-            </button>
-                    : null
-          }
+        {
+          showMonthArrow ?
+          <button
+            style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'left' }}
+            className={classes.prevButton}
+            onClick={this.changeMonth.bind(this, -1)}>
+            <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowPrev'] }}></i>
+          </button> : null
+        }
         <span>
-          <span className={classes.month}>{monthDict[month.toLowerCase()]}</span>
+          <span className={classes.month}>{month}</span>
           <span className={classes.monthAndYearDivider}> - </span>
           <span className={classes.year}>{year}</span>
         </span>
-          {
-            // ayou 2016.11.23 不显示箭头
-            !this.props.disableArrow ?
-            <button
-              style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'right' }}
-              className={classes.nextButton}
-              onClick={this.changeMonth.bind(this, +1)}>
-              <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowNext'] }}></i>
-            </button>: null
-          }
+        {
+          showMonthArrow ?
+          <button
+            style={onlyClasses ? undefined : { ...styles['MonthButton'], float : 'right' }}
+            className={classes.nextButton}
+            onClick={this.changeMonth.bind(this, +1)}>
+            <i style={onlyClasses ? undefined : { ...styles['MonthArrow'], ...styles['MonthArrowNext'] }}></i>
+          </button> : null
+        }
       </div>
     )
   }
@@ -146,22 +131,13 @@ class Calendar extends Component {
     const dow             = this.state.firstDayOfWeek;
     const weekdays        = [];
     const { styles }      = this;
-    const { onlyClasses } = this.props;
+    const { onlyClasses, lang } = this.props;
 
     for (let i = dow; i < 7 + dow; i++) {
-      const day = moment.weekdaysMin(i);
-      // Ayou 2016.10.27
-      const dayDict={
-        'su':'日',
-        'mo':'一',
-        'tu':'二',
-        'we':'三',
-        'th':'四',
-        'fr':'五',
-        'sa':'六'
-      }
+      let day = moment.weekdaysMin(i);
+      day = lang ? LangDic[lang][day.toLowerCase()] : day;
       weekdays.push(
-        <span style={onlyClasses ? undefined : styles['Weekday']} className={classes.weekDay} key={day}>{dayDict[day.toLowerCase()]}</span>
+        <span style={onlyClasses ? undefined : styles['Weekday']} className={classes.weekDay} key={day}>{day}</span>
       );
     }
 
@@ -172,7 +148,7 @@ class Calendar extends Component {
     // TODO: Split this logic into smaller chunks
     const { styles }               = this;
 
-    const { range, minDate, maxDate, format, onlyClasses } = this.props;
+    const { range, minDate, maxDate, format, onlyClasses, disableDaysBeforeToday } = this.props;
 
     const shownDate                = this.getShownDate();
     const { date, firstDayOfWeek } = this.state;
@@ -201,12 +177,12 @@ class Calendar extends Component {
     // Current month's days
     for (let i = 1; i <= dayCount; i++) {
       const dayMoment  = shownDate.clone().date(i);
-      // ayou 如果小于今天，显示为isPassive
+      // set days before today to isPassive
       var _today = moment()
-      if (this.props.disableDaysBefore && Number(dayMoment.diff(_today,"days")) <= -1) {
-              days.push({ dayMoment ,isPassive:true});
+      if (disableDaysBeforeToday && Number(dayMoment.diff(_today,"days")) <= -1) {
+        days.push({ dayMoment ,isPassive:true});
       } else {
-              days.push({ dayMoment });
+        days.push({ dayMoment });
       }
     }
 
@@ -235,8 +211,8 @@ class Calendar extends Component {
           theme={ styles }
           isStartEdge = { isStartEdge }
           isEndEdge = { isEndEdge }
-          isSelected = { isSelected || isEdge }
-          isInRange ={ isInRange }
+          isSelected={ isSelected || isEdge }
+          isInRange={ isInRange }
           isToday={ isToday }
           key={ index }
           isPassive = { isPassive || isOutsideMinMax }
@@ -266,11 +242,16 @@ class Calendar extends Component {
 Calendar.defaultProps = {
   format      : 'DD/MM/YYYY',
   theme       : {},
+  showMonthArrow: true,
+  disableDaysBeforeToday: false,
   onlyClasses : false,
   classNames  : {}
 }
 
 Calendar.propTypes = {
+  showMonthArrow : PropTypes.bool,
+  disableDaysBeforeToday : PropTypes.bool,
+  lang           : PropTypes.string,
   sets           : PropTypes.string,
   range          : PropTypes.shape({
     startDate    : PropTypes.object,

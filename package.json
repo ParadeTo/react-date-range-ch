@@ -1,7 +1,7 @@
 {
   "name": "react-date-range-ch",
-  "version": "0.4.0",
-  "description": "修改react-date-range模块为中文",
+  "version": "0.5.0",
+  "description": "修改react-date-range",
   "main": "lib/index.js",
   "scripts": {
     "start-dev": "babel ./src --watch --out-dir ./lib & cd demo && npm install && npm run start-dev",

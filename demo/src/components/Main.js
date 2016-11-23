@@ -100,6 +100,23 @@ export default class Main extends Component {
           />
         </Section>
 
+        <Section title='Date Picker, chinese.'>
+          <div>
+            <input
+              type='text'
+              readOnly
+              value={ datePicker && datePicker.format(format).toString() }
+            />
+          </div>
+          <Calendar
+            disableDaysBeforeToday={true}
+            lang={'jp'}
+            date={ now => { return now } }
+            onInit={ this.handleChange.bind(this, 'datePicker') }
+            onChange={ this.handleChange.bind(this, 'datePicker') }
+          />
+        </Section>
+
         <Section title='Date Picker (Monday First)'>
           <div>
             <input
@@ -194,7 +211,7 @@ export default class Main extends Component {
           />
         </Section>
 
-        <Section title='1 No prev and next. 2 Cannot picker days before today. 3 Can set the shownDate (the props of Calendar) manually'>
+        <Section title='Mobile Datepicker'>
           <div>
             <input
               type='text'
@@ -207,16 +224,19 @@ export default class Main extends Component {
               value={ rangePicker['endDate'] && rangePicker['endDate'].format(format).toString() }
             />
           </div>
-          <DateRange
-            startDate={ moment().add(1,'month')}
-            endDate={moment().add(1,'month').add(3,'days')}
-            shownDate={moment()}
-            disableDaysBefore={true}
-            disableArrow={true}
-            calendars={4}
-            onInit={ this.handleChange.bind(this, 'rangePicker') }
-            onChange={ this.handleChange.bind(this, 'rangePicker') }
-          />
+          <div className={styles['Mobile-Container']}>
+            <DateRange
+              startDate={ now => {return now.add(1,'month')}}
+              endDate={ now => {return now.add(1,'month').add(3,'days')}}
+              shownDate={moment()}
+              offsetPositive={true}
+              disableDaysBeforeToday={true}
+              showMonthArrow={false}
+              calendars={4}
+              onInit={ this.handleChange.bind(this, 'rangePicker') }
+              onChange={ this.handleChange.bind(this, 'rangePicker') }
+            />
+          </div>
         </Section>
       </main>
     )

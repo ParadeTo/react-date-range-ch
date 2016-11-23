@@ -4,7 +4,7 @@ var UglifyJsPlugin      = webpack.optimize.UglifyJsPlugin;
 var path                = require('path');
 var DefinePlugin        = webpack.DefinePlugin;
 var WebpackDevServer    = require("webpack-dev-server");
-var NODE_ENV            = process.env.NODE_ENV || 'production';
+var NODE_ENV            = process.env.NODE_ENV.trim() || 'production';
 
 var config = {
   entry                 : {
@@ -68,17 +68,8 @@ if (NODE_ENV === 'production') {
 }
 
 const compiler = webpack(config);
-  console.log(NODE_ENV)
-if (NODE_ENV === 'production') {
 
-    compiler.run(function (err, stats) {
-    if (err) throw err;
-    console.log(stats.toString({
-      colors : true,
-      chunks : false
-    }));
-  });
-} else  {
+if (NODE_ENV === 'development') {
   const server = new WebpackDevServer(compiler, {
     contentBase : path.join(__dirname, 'dist'),
     noInfo: false,
@@ -94,5 +85,14 @@ if (NODE_ENV === 'production') {
 
   server.listen(3000, 'localhost', function(){
     console.log('Webpack Dev Server is listening on port 3000');
+  });
+} else if (NODE_ENV === 'production') {
+  compiler.run(function (err, stats) {
+    if (err) throw err;
+
+    console.log(stats.toString({
+      colors : true,
+      chunks : false
+    }));
   });
 }
