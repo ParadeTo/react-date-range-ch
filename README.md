@@ -35,6 +35,7 @@ const state = {
 * disableDaysBefore->disableDaysBeforeToday  是否禁止选择今天之前的日期
 * disableArrow->showMonthArrow 是否不显示日期控件头部的prev和next按钮
 * lang 选择日期目前支持中文(cn)，日文(jp)
+
 ### DateRange:
 * offsetPositive 会影响Calendar的生成顺序
 ```javascript
