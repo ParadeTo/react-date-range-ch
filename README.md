@@ -31,10 +31,6 @@ const state = {
 
 ## 0.5.0
 1.增加/修改参数
-<<<<<<< HEAD
-
-=======
->>>>>>> 0be11af0d9132a7b538b738b72253d2431f730f2
 ### Calendar:
 * disableDaysBefore->disableDaysBeforeToday  是否禁止选择今天之前的日期
 * disableArrow->showMonthArrow 是否不显示日期控件头部的prev和next按钮
