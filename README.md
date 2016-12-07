@@ -21,7 +21,7 @@ npm intall react-date-range-ch@x.x.x --save
 给Calendar增加一个属性：
 * shownDate 设定日历的当前日期
 Calendar.js:
-```javascript
+```
 const state = {
   date,
   shownDate : (shownDate || range && range['endDate'] || date).clone().add(offset, 'months'), // ayou 2016.11.23人工指定shownDate
@@ -38,7 +38,7 @@ const state = {
 
 ### DateRange:
 * offsetPositive 会影响Calendar的生成顺序
-```javascript
+```
 ...
 const _calendars = [];
         const _method = offsetPositive ? 'unshift' : 'push';
@@ -47,3 +47,6 @@ const _calendars = [];
 ...
 ```
 2.增加字典文件LangDic，目前支持中文，日文
+
+## 0.5.1
+修复0.5.0的相关bug：DateRange中使用Calerdar传递showMonthArrow属性

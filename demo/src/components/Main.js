@@ -228,7 +228,7 @@ export default class Main extends Component {
             <DateRange
               startDate={ now => {return now.add(1,'month')}}
               endDate={ now => {return now.add(1,'month').add(3,'days')}}
-              shownDate={moment()}
+              shownDate={moment().add(-1,'month')}
               offsetPositive={true}
               disableDaysBeforeToday={true}
               showMonthArrow={false}

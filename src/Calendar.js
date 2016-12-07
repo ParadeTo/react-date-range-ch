@@ -15,13 +15,13 @@ function checkRange(dayMoment, range) {
 function checkStartEdge(dayMoment, range) {
   const { startDate } = range;
 
-  return dayMoment.isSame(startDate);
+  return dayMoment.isSame(startDate, "day");
 }
 
 function checkEndEdge(dayMoment, range) {
   const { endDate } = range;
 
-  return dayMoment.isSame(endDate);
+  return dayMoment.isSame(endDate, "day");
 }
 
 function isOusideMinMax(dayMoment, minDate, maxDate, format) {
@@ -97,7 +97,6 @@ class Calendar extends Component {
     const { onlyClasses, lang, showMonthArrow} = this.props;
 
     month = lang ? LangDic[lang][month.toLowerCase()] : month;
-
     return (
       <div style={onlyClasses ? undefined : styles['MonthAndYear']} className={classes.monthAndYearWrapper}>
         {

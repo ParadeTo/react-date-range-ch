@@ -1,6 +1,6 @@
 {
   "name": "react-date-range-ch",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "修改react-date-range",
   "main": "lib/index.js",
   "scripts": {
