@@ -50,3 +50,9 @@ const _calendars = [];
 
 ## 0.5.1
 修复0.5.0的相关bug：DateRange中使用Calerdar传递showMonthArrow属性
+
+## 0.5.2
+给``checkStartEdge``和``checkEndEdge``中的``isSame``方法增加``"day"``参数
+
+## 0.5.2-rc.1
+补充说明文档
