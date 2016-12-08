@@ -46,6 +46,7 @@ const defaultTheme = {
   DayText :{
     display       : 'block',
     width         : '100%',
+    textAlign     : 'center',
     fontSize      : 12
   },
 
