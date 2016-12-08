@@ -188,14 +188,14 @@ class Calendar extends Component {
     const diff = (Math.abs(firstDayOfWeek - (startOfMonth + 7)) % 7);
     for (let i = diff-1; i >= 0; i--) {
       const dayMoment  = lastMonth.clone().date(lastMonthDayCount - i);
-      const dayText = this.getDayText(dayMoment) || null;
+      const dayText = (this.showText && this.getDayText(dayMoment)) || null;
       days.push({ dayMoment, dayText, isPassive : true });
     }
 
     // Current month's days
     for (let i = 1; i <= dayCount; i++) {
       const dayMoment  = shownDate.clone().date(i);
-      const dayText = this.getDayText(dayMoment) || null;
+      const dayText = (this.showText && this.getDayText(dayMoment)) || null;
       // set days before today to isPassive
       var _today = moment()
       if (disableDaysBeforeToday && Number(dayMoment.diff(_today,"days")) <= -1) {
@@ -209,7 +209,7 @@ class Calendar extends Component {
     const remainingCells = 42 - days.length; // 42cells = 7days * 6rows
     for (let i = 1; i <= remainingCells; i++ ) {
       const dayMoment  = nextMonth.clone().date(i);
-      const dayText = this.getDayText(dayMoment) || null;
+      const dayText = (this.showText && this.getDayText(dayMoment)) || null;
       days.push({ dayMoment, dayText, isPassive : true });
     }
 

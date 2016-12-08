@@ -56,3 +56,39 @@ const _calendars = [];
 
 ## 0.5.2-rc.1
 补充说明文档
+
+## 0.6.0
+增加文字显示功能
+
+```
+<DateRange
+  ...
+  dayText: [{
+    ts: moment().format('x'), // 时间戳
+    text: '入住'
+  },{
+    ts: moment().add(1,"days").format('x'),
+    text: '离开'
+  }]
+  ...
+/>
+```
+```
+<DateRange
+  ...
+  dayText: [{
+    ts: moment().format('x'),
+    text: '¥123'
+  },{
+    ts: moment().add(1,"days").format('x'),
+    text: '¥124'
+  },{
+    ts: moment().add(2,"days").format('x'),
+    text: '¥125'
+  },{
+    ts: moment().add(3,"days").format('x'),
+    text: '¥126'
+  }]
+  ...
+/>
+```
