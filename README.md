@@ -59,24 +59,24 @@ const _calendars = [];
 
 ## 0.6.0
 增加文字显示功能
-
+### 使用方式：
 ```
 <DateRange
   ...
-  dayText: [{
+  dayText: {[{
     ts: moment().format('x'), // 时间戳
     text: '入住'
   },{
     ts: moment().add(1,"days").format('x'),
     text: '离开'
-  }]
+  }]}
   ...
 />
 ```
 ```
 <DateRange
   ...
-  dayText: [{
+  dayText: {[{
     ts: moment().format('x'),
     text: '¥123'
   },{
@@ -88,7 +88,7 @@ const _calendars = [];
   },{
     ts: moment().add(3,"days").format('x'),
     text: '¥126'
-  }]
+  }]}
   ...
 />
 ```
