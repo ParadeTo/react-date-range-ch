@@ -58,6 +58,7 @@ const _calendars = [];
 补充说明文档
 
 ## 0.6.0
+增加文字显示功能
 ### 示例
 ![image](https://github.com/ParadeTo/react-date-range-ch/blob/master/img/example-0.6.0.png)
 ### 使用方式：
