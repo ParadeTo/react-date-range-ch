@@ -14,12 +14,12 @@ npm intall react-date-range-ch@x.x.x --save
 
 ## 0.3.0
 给Calendar增加两个属性：
-* disableDaysBefore 是否禁止选择今天之前的日期
-* disableArrow 是否不显示日期控件头部的prev和next按钮
+* disableDaysBefore-是否禁止选择今天之前的日期
+* disableArrow-是否不显示日期控件头部的prev和next按钮
 
 ## 0.4.0
 给Calendar增加一个属性：
-* shownDate 设定日历的当前日期
+* shownDate-设定日历的当前日期
 Calendar.js:
 ```
 const state = {
@@ -32,9 +32,9 @@ const state = {
 ## 0.5.0
 1.增加/修改参数
 ### Calendar:
-* disableDaysBefore->disableDaysBeforeToday  是否禁止选择今天之前的日期
-* disableArrow->showMonthArrow 是否不显示日期控件头部的prev和next按钮
-* lang 选择日期目前支持中文(cn)，日文(jp)
+* disableDaysBefore->disableDaysBeforeToday-是否禁止选择今天之前的日期
+* disableArrow->showMonthArrow-是否不显示日期控件头部的prev和next按钮
+* lang-语言，目前支持中文(cn)，日文(jp)
 
 ### DateRange:
 * offsetPositive 会影响Calendar的生成顺序

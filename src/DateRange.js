@@ -89,6 +89,8 @@ class DateRange extends Component {
 
   componentWillReceiveProps(newProps) {
     // Whenever date props changes, update state with parsed variant
+    console.log(this.props.dayText);
+    console.log(newProps);
     if (newProps.startDate || newProps.endDate) {
       const format       = newProps.format || this.props.format;
       const startDate    = newProps.startDate   && parseInput(newProps.startDate, format);
@@ -106,7 +108,7 @@ class DateRange extends Component {
   }
 
   render() {
-    const { ranges, format, linkedCalendars, style, calendars, firstDayOfWeek, minDate, maxDate, classNames, onlyClasses, lang, disableDaysBeforeToday, offsetPositive, shownDate, showMonthArrow } = this.props;
+    const { ranges, format, linkedCalendars, style, calendars, firstDayOfWeek, minDate, maxDate, classNames, onlyClasses, lang, disableDaysBeforeToday, offsetPositive, shownDate, showMonthArrow, dayText } = this.props;
     const { range, link } = this.state;
     const { styles } = this;
 
@@ -131,6 +133,7 @@ class DateRange extends Component {
           for (var i = Number(calendars) - 1; i >= 0; i--) {
             _calendars[_method](
               <Calendar
+                dayText={ dayText }
                 showMonthArrow={ showMonthArrow }
                 shownDate={ shownDate }
                 disableDaysBeforeToday={ disableDaysBeforeToday }
@@ -183,7 +186,8 @@ DateRange.propTypes = {
   onChange        : PropTypes.func,
   onlyClasses     : PropTypes.bool,
   offsetPositive  : PropTypes.bool,
-  classNames      : PropTypes.object
+  classNames      : PropTypes.object,
+  dayText         : PropTypes.array // [{ts:'1481178722000',text:'¥888'},{ts:'1481178722000',text:'¥889'}]
 }
 
 export default DateRange;

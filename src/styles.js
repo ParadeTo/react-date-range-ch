@@ -38,9 +38,21 @@ const defaultTheme = {
     color         : '#000000',
   },
 
-  Day : {
-    boxSizing     : 'border-box',
+  DayCell: {
     display       : 'inline-block',
+    verticalAlign : 'top'
+  },
+
+  DayText :{
+    display       : 'block',
+    width         : '100%',
+    fontSize      : 12
+  },
+
+  Day : {
+    width         : '100%',
+    boxSizing     : 'border-box',
+    display       : 'block',
     letterSpacing : 'initial',
     textAlign     : 'center',
     fontSize      : 12,
@@ -184,8 +196,21 @@ export default (customTheme = {}) => {
 
     Calendar : { ...defaultTheme.Calendar, ...customTheme.Calendar },
 
-    Day : {
+    DayCell : {
       width         : cellSize,
+      ...defaultTheme.DayCell,
+      ...customTheme.DayCell
+    },
+
+    DayText : {
+      height : 0.5 * cellSize,
+      lineHeight : 0.5 * cellSize + 'px',
+      ...defaultTheme.DayText,
+      ...customTheme.DayText
+    },
+
+    Day : {
+      // width         : cellSize,
       height        : cellSize,
       lineHeight    : cellSize + 'px',
       ...defaultTheme.Day,
