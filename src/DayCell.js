@@ -16,6 +16,23 @@ class DayCell extends Component {
     this.styles = this.props.theme;
   }
 
+  shouldComponentUpdate(nextProps,nextState) {
+    if (this.state.hover !== nextState.hover || this.state.active !== nextState.active) {
+      return true;
+    } else if (
+      this.props.dayText !== nextProps.dayText ||
+      this.props.isEndEdge !== nextProps.isEndEdge ||
+      this.props.isInRange !== nextProps.isInRange ||
+      this.props.isPassive !== nextProps.isPassive ||
+      this.props.isSelected !== nextProps.isSelected ||
+      this.props.isStartEdge !== nextProps.isStartEdge ||
+      this.props.isToday !== nextProps.isToday
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   handleMouseEvent(event) {
     event.preventDefault();
 
